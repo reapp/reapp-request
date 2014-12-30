@@ -20,6 +20,7 @@
     "parseurl": "~1.3.0",
     "superagent-bluebird-promise": "~0.5.1",
     "bluebird": "~2.4.0",
-    "superagent": "~0.21.0"
+    "superagent": "~0.21.0",
+    "localforage": "~1.2.0"
   }
 }

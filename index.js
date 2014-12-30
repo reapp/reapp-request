@@ -1,16 +1,20 @@
 var Parseurl = require('parseurl');
 var Superagent = require('superagent');
 var { Promise } = require('bluebird');
-// var { localStorage } = window;
 
 require('superagent-bluebird-promise');
 
-var cache = window._request_cache = {};
+// an in-progress client that attempts to simplify isomorphism
+// how? cache at the client level, rather than store level.
+// this keeps your stores completely simple, and keeps data-fetching
+// logic at the request level.
 
-class Client extends Superagent {
+// todo: localforage/storage support
+
+class Client {
   constructor({ base }) {
-    this.base = base;
-    this.requests = {}; // todo: caching
+    this.base = base || '';
+    this.requests = {};
   }
 
   setBase(url) {
@@ -25,17 +29,19 @@ class Client extends Superagent {
   get(url, opts) {
     opts = opts || {};
 
-    if (!opts.nocache && cache[url])
-      return Promise.resolve(cache[url]);
+    if (!opts.nocache && this.requests[url])
+      return Promise.resolve(this.requests[url]);
     else
-      return super(this.getUrl(url)).promise().then(
+      return Superagent.get(this.getUrl(url)).promise().then(
         res => {
-          cache[url] = res.body;
+          this.requests[url] = res.body;
           return res.body;
         },
         error
       );
   }
+
+  // todo: post, etc
 }
 
 function error(err) {

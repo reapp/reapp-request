@@ -21,18 +21,19 @@ module.exports = {
     libraryTarget: 'var'
   },
 
+  externals: {
+    bluebird: 'Bluebird'
+  },
+
   module: {
     loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: '6to5-loader?experimental'
       }
     ]
-  },
-
-  node: {
-    __dirname: true
   },
 
   plugins: plugins

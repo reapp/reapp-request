@@ -4,11 +4,6 @@ var { Promise } = require('bluebird');
 
 require('superagent-bluebird-promise');
 
-// an in-progress client that attempts to simplify isomorphism
-// how? cache at the client level, rather than store level.
-// this keeps your stores completely simple, and keeps data-fetching
-// logic at the request level.
-
 // todo: localforage/storage support
 
 class Client {

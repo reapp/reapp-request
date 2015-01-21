@@ -22,5 +22,15 @@
     "bluebird": "~2.4.0",
     "superagent": "~0.21.0",
     "localforage": "~1.2.0"
+  },
+  "browser": {
+    "./index.js": "./dist/main.js"
+  },
+  "devDependencies": {
+    "webpack": "~1.5.1",
+    "6to5-loader": "~2.0.0",
+    "6to5": "~2.13.4",
+    "imports-loader": "~0.6.3",
+    "exports-loader": "~0.6.2"
   }
 }

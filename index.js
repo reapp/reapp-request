@@ -43,4 +43,6 @@ function error(err) {
   throw new Error(err);
 }
 
+console.log('WAT', Client);
+
 module.exports = Client;

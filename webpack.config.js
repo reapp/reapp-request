@@ -7,16 +7,7 @@ var plugins = [
   })
 ];
 
-if (process.env.COMPRESS)
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: { warnings: false }
-    })
-  );
-
 module.exports = {
-  target: 'web',
-
   output: {
     libraryTarget: 'var'
   },
